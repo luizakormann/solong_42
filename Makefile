@@ -6,7 +6,7 @@
 #    By: luiza <luiza@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/03/31 19:58:12 by luiza            ###   ########.fr        #
+#    Updated: 2025/03/31 20:19:12 by luiza            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@
 # common comp
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -I$(LIB_DIR)/include
+CFLAGS += $(MLX_INC)
+LDFLAGS += $(MLX_FLAGS)
 RM	= rm -rf
 
 # link libft
@@ -31,7 +33,13 @@ LINKLIB = -lft
 # common
 INC_DIR	= include/
 LIB_DIR = libft/
+MLX_DIR = minilibx-linux
 OBJ_DIR	= obj/
+
+# mlx
+MLX_LIB = $(MLX_DIR)/libmlx.a
+MLX_INC = -I$(MLX_DIR)
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 
 # mandatory
 SRC_DIR	= src/
@@ -60,6 +68,7 @@ OBJS = $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%, $(SRC:.c=.o))
 
 COMP_OBJS	= $(CC) $(CFLAGS) -c $< -o $@
 COMP	= $(CC) $(CFLAGS) $(OBJS) $(FINDLIBFT) $(LINKLIB) -o $(NAME)
+
 # **************************************************************************** #
 #                                  targets                                     #
 # **************************************************************************** #
@@ -70,12 +79,15 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	mkdir -p $(dir $@)
 	$(COMP_OBJS)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
 	mkdir -p $(BIN_DIR)
 	$(COMP)
 
 $(LIBFT):
 	$(MAKE) -C $(LIB_DIR) all
+
+$(MLX_LIB):
+	$(MAKE) -C $(MLX_DIR)
 
 git_submodule:
 	git submodule update --init --recursive
