@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 19:34:06 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/02 12:34:05 by luiza            ###   ########.fr       */
+/*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
+/*   Updated: 2025/04/02 12:51:39 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int close_game(t_game *game)
+void	init_game(t_game *game, char *map_file)
 {
-	free_map(&game->map);
-	mlx_destroy_window(game->mlx, game->win);
-	exit(0);
-	return (0);
-}
-
-int main(int argc, char **argv)
-{
-	t_game	game;
-
-	if (argc != 2)
+	game->mlx = mlx_init();
+	if (!game->mlx)
 	{
-		write(2, "Error: usage ./so_long <map_file>\n", 34);
-		return (1);
+		perror("Error initializing MLX");
+		exit(EXIT_FAILURE);
 	}
-	init_game(&game, argv[1]);
-	render_map(&game);
-	mlx_key_hook(game.win, key_hook, &game);
-	mlx_loop(game.mlx);
-	return (0);
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "so_long");
+	if (!game->win)
+	{
+		perror("Error creating window");
+		exit(EXIT_FAILURE);
+	}
+	game->player.x = 0;
+	game->player.y = 0;
 }
