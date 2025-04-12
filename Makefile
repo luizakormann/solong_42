@@ -6,7 +6,7 @@
 #    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/04/11 21:15:16 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/11 21:20:59 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,6 @@ $(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
 $(LIBFT):
 	$(MAKE) -C $(LIB_DIR) all
 
-$(MLX_LIB):
-	$(MAKE) -C $(MLX_DIR)
-
 git_submodule:
 	git submodule update --init --recursive
 
@@ -107,4 +104,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re git_submodule mlx
