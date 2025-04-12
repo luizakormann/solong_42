@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: luiza <luiza@student.42.fr>                +#+  +:+       +#+         #
+#    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/03/31 20:19:12 by luiza            ###   ########.fr        #
+#    Updated: 2025/04/11 21:15:16 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,17 @@ LINKLIB = -lft
 # **************************************************************************** #
 
 # common
-INC_DIR	= include/
-LIB_DIR = libft/
-MLX_DIR = minilibx-linux
-OBJ_DIR	= obj/
+INC_DIR	= include
+LIB_DIR = libft
+MLX_DIR = MLX42
+OBJ_DIR	= obj
 
 # mlx
-MLX_LIB = $(MLX_DIR)/libmlx.a
-MLX_INC = -I$(MLX_DIR)
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+MLX_LIB = $(MLX_DIR)/build/libmlx42.a
+MLX_INC = -I $(MLX_DIR)/include
+MLX_FLAGS = -L$(MLX_DIR)-ldl -lglfw -pthread -lm
+MLX_SRC = $(shell find .src -iname "*.c")
+MLX_OBJ = ${MLX_SRC:.c=.o}
 
 # mandatory
 SRC_DIR	= src/
@@ -73,7 +75,7 @@ COMP	= $(CC) $(CFLAGS) $(OBJS) $(FINDLIBFT) $(LINKLIB) -o $(NAME)
 #                                  targets                                     #
 # **************************************************************************** #
 
-all: git_submodule $(LIBFT) $(NAME)
+all: mlx git_submodule $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	mkdir -p $(dir $@)
@@ -91,6 +93,10 @@ $(MLX_LIB):
 
 git_submodule:
 	git submodule update --init --recursive
+
+mlx:
+	sed -i "s/(VERSION 3.18.0)/(VERSION 3.16.0)/" ./MLX42/CMakeLists.txt
+	@cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
 clean:
 	$(RM) $(OBJ_DIR)

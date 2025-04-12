@@ -1,6 +1,6 @@
 [submodule "libft"]
 	path = libft
 	url = https://github.com/luizakormann/libft_42
-[submodule "minilibx-linux"]
-	path = minilibx-linux
-	url = https://github.com/42Paris/minilibx-linux.git
+[submodule "MLX42"]
+	path = MLX42
+	url = git@github.com:codam-coding-college/MLX42.git
