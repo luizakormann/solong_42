@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/11 21:25:24 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/11 23:07:16 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/include/libft.h"
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct s_map
 {
@@ -56,5 +57,6 @@ void	init_game(t_game *game, char *map_file);
 void	load_map(t_game *game, char *map_file);
 void	render_map(t_game *game);
 void	free_map(t_map *map);
+int		close_game(t_game *game)
 
 #endif

@@ -6,7 +6,7 @@
 #    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/04/11 22:03:48 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/18 16:50:01 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,10 +92,16 @@ $(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
 $(LIBFT):
 	$(MAKE) -C $(LIB_DIR) all
 
-LEAKS	:=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
+LEAKS	:=	valgrind --leak-check=full --show-leak-kinds=all\
+		--track-origins=yes --log-file=valgrind-out.txt
+
+SUP	=	valgrind --suppressions=.suppress_mlx_error.sup ./so_long
 
 valgrind: all
 	@$(LEAKS)
+
+supmlx: all
+	@$(SUP)
 
 git_submodule:
 	git submodule update --init --recursive
