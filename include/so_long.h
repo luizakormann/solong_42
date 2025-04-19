@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 01:23:56 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:01:30 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SO_LONG_H
 # define WIDTH_TILE 32
 # define HEIGHT_TILE 32
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define MAX_MAP_HEIGHT (HEIGHT / HEIGHT_TILE)
 # define TRUE 1
 # define FALSE 0
@@ -75,5 +75,6 @@ void	grow_images_array(t_game *game);
 void	add_image(t_game *game, mlx_image_t *img);
 void	free_images(t_game *game);
 void	free_textures(t_game *game);
+void	render_background(t_game *game);
 
 #endif

@@ -6,23 +6,39 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 01:22:02 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:00:00 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	render_background(t_game *game)
+{
+	mlx_image_t	*bg;
+	int			map_width_px;
+	int			map_height_px;
+
+	map_width_px = game->map.width * WIDTH_TILE;
+	map_height_px = game->map.height * HEIGHT_TILE;
+
+	bg = mlx_texture_to_image(game->mlx, game->textures.floor);
+	if (!bg)
+	{
+		ft_printf("Error loading background image\n");
+		exit(EXIT_FAILURE);
+	}
+	mlx_resize_image(bg, map_width_px, map_height_px);
+	mlx_image_to_window(game->mlx, bg, 0, 0);
+	add_image(game, bg);
+}
 
 static void	render_tile(t_game *game, char tile, int x, int y)
 {
 	mlx_image_t	*img;
 
 	img = NULL;
-	mlx_image_to_window(game->mlx, mlx_texture_to_image(game->mlx, game->textures.floor),
-				x * WIDTH_TILE, y * HEIGHT_TILE);
 	if (tile == '1')
 		img = mlx_texture_to_image(game->mlx, game->textures.wall);
-	else if (tile == '0')
-		img = mlx_texture_to_image(game->mlx, game->textures.floor);
 	else if (tile == 'P')
 		img = mlx_texture_to_image(game->mlx, game->textures.player);
 	else if (tile == 'E')
@@ -33,6 +49,7 @@ static void	render_tile(t_game *game, char tile, int x, int y)
 		return ;
 	if (img)
 	{
+		mlx_resize_image(img, WIDTH_TILE, HEIGHT_TILE);
 		mlx_image_to_window(game->mlx, img, x * WIDTH_TILE, y * HEIGHT_TILE);
 		add_image(game, img);
 	}
