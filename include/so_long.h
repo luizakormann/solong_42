@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/18 21:45:41 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/18 23:45:18 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_game
 	t_map		map;
 	t_textures	textures;
 	t_player	player;
+	mlx_image_t	**images;
+	int			img_count;
+	int			img_capacity;
 }	t_game;
 
 void	init_game(t_game *game, char *map_file);
@@ -67,5 +70,8 @@ void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
 void	free_map(t_map *map);
 void	close_game(void *game);
 void	handle_input(void *param);
+void	init_images(t_game *game);
+void	grow_images_array(t_game *game);
+void	add_image(t_game *game, mlx_image_t *img);
 
 #endif

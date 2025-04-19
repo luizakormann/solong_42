@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:37:47 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/18 22:31:00 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/18 23:46:48 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@ static char	**map_to_grid(char *map_file, int height);
 
 void	load_textures(t_game *game)
 {
-	game->textures.floor = mlx_load_png("../textures/floor.png");
+	game->textures.floor = mlx_load_png("./textures/floor.png");
 	if (!game->textures.floor)
 	{
 		ft_printf("Error loading floor texture\n");
 		exit(EXIT_FAILURE);
 	}
-	game->textures.collectible = mlx_load_png("../textures/collectible.png");
+	game->textures.collectible = mlx_load_png("./textures/collectible.png");
 	if (!game->textures.collectible)
 	{
 		ft_printf("Error loading collectible texture\n");
 		exit(EXIT_FAILURE);
 	}
-	game->textures.exit = mlx_load_png("../textures/exit.png");
+	game->textures.exit = mlx_load_png("./textures/exit.png");
 	if (!game->textures.exit)
 	{
 		ft_printf("Error loading exit texture\n");
 		exit(EXIT_FAILURE);
 	}
-	game->textures.player = mlx_load_png("../textures/player.png");
+	game->textures.player = mlx_load_png("./textures/player.png");
 	if (!game->textures.player)
 	{
 		ft_printf("Error loading player texture\n");
 		exit(EXIT_FAILURE);
 	}
-	game->textures.wall = mlx_load_png("../textures/wall.png");
+	game->textures.wall = mlx_load_png("./textures/wall.png");
 	if (!game->textures.wall)
 	{
 		ft_printf("Error loading wall texture\n");

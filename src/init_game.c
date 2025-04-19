@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/18 20:45:35 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/18 23:45:56 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	init_game(t_game *game, char *map_file)
 	}
 	game->player.x = 0;
 	game->player.y = 0;
+	init_images(game);
 }
