@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/18 23:44:27 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:22:02 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	render_tile(t_game *game, char tile, int x, int y)
 	mlx_image_t	*img;
 
 	img = NULL;
+	mlx_image_to_window(game->mlx, mlx_texture_to_image(game->mlx, game->textures.floor),
+				x * WIDTH_TILE, y * HEIGHT_TILE);
 	if (tile == '1')
 		img = mlx_texture_to_image(game->mlx, game->textures.wall);
 	else if (tile == '0')
