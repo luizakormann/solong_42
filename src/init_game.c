@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/11 23:08:59 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/18 20:45:35 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	init_game(t_game *game, char *map_file)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long");
+	int	window_h;
+	int	window_w;
+
+	window_h = HEIGHT;
+	window_w = WIDTH;
+	open_map(game, map_file);
+	check_window(game->map.width, game->map.height, &window_w, &window_h);
+	game->mlx = mlx_init(window_w, window_h, "so_long", TRUE);
 	if (!game->mlx)
 	{
-		perror("Error initializing MLX");
-		exit(EXIT_FAILURE);
-	}
-	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "so_long", 1);
-	if (!game->win)
-	{
-		perror("Error creating window");
+		free_map(&game->map);
+		ft_printf("Error initializing MLX");
 		exit(EXIT_FAILURE);
 	}
 	game->player.x = 0;

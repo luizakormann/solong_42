@@ -6,7 +6,7 @@
 #    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/04/18 16:50:01 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/18 21:56:03 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ LIBFT_FLAGS = -L$(LIB_DIR)/bin -lft
 # mlx
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 MLX_INC = -I $(MLX_DIR)/include
-MLX_FLAGS = -L$(MLX_DIR)-ldl -lglfw -pthread -lm
+MLX_FLAGS = -L$(MLX_DIR)/build -lmlx42 -ldl -lglfw -pthread -lm
 MLX_SRC = $(shell find $(MLX_DIR)/src -name "*.c")
 MLX_OBJ = ${MLX_SRC:.c=.o}
 
@@ -69,11 +69,11 @@ OBJS = $(patsubst $(SRC_DIR)%, $(OBJ_DIR)%, $(SRC:.c=.o))
 
 # comb flags
 CFLAGS += -I$(LIB_DIR)/include $(MLX_INC)
-LDFLAGS += $(MLX_FLAGS)
+LDFLAGS += $(MLX_FLAGS) $(LIBFT_FLAGS)
 
 # comp
 COMP_OBJS	= $(CC) $(CFLAGS) -c $< -o $@
-COMP	= $(CC) $(CFLAGS) $(OBJS) $(FINDLIBFT) $(LINKLIB) -o $(NAME)
+COMP	= $(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 # **************************************************************************** #
 #                                  targets                                     #
@@ -81,7 +81,7 @@ COMP	= $(CC) $(CFLAGS) $(OBJS) $(FINDLIBFT) $(LINKLIB) -o $(NAME)
 
 all: mlx git_submodule $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 	mkdir -p $(dir $@)
 	$(COMP_OBJS)
 

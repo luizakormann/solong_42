@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/11 23:07:16 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:45:41 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define MAX_MAP_HEIGHT (HEIGHT / HEIGHT_TILE)
+# define TRUE 1
+# define FALSE 0
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/include/libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
 
 typedef struct s_map
 {
@@ -32,11 +35,11 @@ typedef struct s_map
 
 typedef struct s_textures
 {
-	void	*wall;
-	void	*player;
-	void	*collectible;
-	void	*exit;
-	void	*background;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*floor;
+	mlx_texture_t	*player;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*collectible;
 }	t_textures;
 
 typedef struct s_player
@@ -50,13 +53,19 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_map		map;
+	t_textures	textures;
 	t_player	player;
 }	t_game;
 
 void	init_game(t_game *game, char *map_file);
-void	load_map(t_game *game, char *map_file);
+void	open_map(t_game *game, const char *map_file);
 void	render_map(t_game *game);
+void	check_window(int map_w, int map_h, int *win_w, int *win_h);
+void	load_textures(t_game *game);
+void	load_and_parse_map(t_game *game, char *map_file);
+void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
 void	free_map(t_map *map);
-int		close_game(t_game *game)
+void	close_game(void *game);
+void	handle_input(void *param);
 
 #endif
