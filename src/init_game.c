@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/18 23:45:56 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 00:18:43 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	init_game(t_game *game, char *map_file)
 
 	window_h = HEIGHT;
 	window_w = WIDTH;
+	game->map.grid = NULL;
+    game->images = NULL;
+    game->textures.wall = NULL;
+    game->textures.floor = NULL;
+    game->textures.player = NULL;
+    game->textures.exit = NULL;
+    game->textures.collectible = NULL;
 	open_map(game, map_file);
 	check_window(game->map.width, game->map.height, &window_w, &window_h);
 	game->mlx = mlx_init(window_w, window_h, "so_long", TRUE);

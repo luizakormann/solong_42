@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    .supress_mlx_error.sup                             :+:      :+:    :+:    #
+#    .supmlx.sup                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/18 16:59:34 by lukorman          #+#    #+#              #
-#    Updated: 2025/04/18 16:59:35 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/19 00:26:04 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,5 +73,31 @@
    match-leak-kinds: reachable
    ...
    fun:_dl_init
+   ...
+}
+{
+   <MLX_DL_STRNCMP>
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   ...
+   fun:_dl_map_object
+   ...
+}
+{
+   <MLX_DL_MALLOC>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   ...
+   fun:_dl_find_object_update
+   ...
+}
+{
+   <MLX_DL_OPEN>
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:dlopen*
    ...
 }

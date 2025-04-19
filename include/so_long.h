@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/18 23:45:18 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 00:20:48 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ void	handle_input(void *param);
 void	init_images(t_game *game);
 void	grow_images_array(t_game *game);
 void	add_image(t_game *game, mlx_image_t *img);
+void	free_images(t_game *game);
+void	free_textures(t_game *game);
 
 #endif

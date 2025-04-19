@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/18 23:57:30 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 00:15:24 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	read_map_content(t_game *game, const char *map_file, int line_count)
 	char	*line;
 	int		i;
 	char	*pos;
+	size_t	len;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
@@ -48,6 +49,9 @@ void	read_map_content(t_game *game, const char *map_file, int line_count)
 	i = 0;
 	while ((line = get_next_line(fd)) && i < line_count)
 	{
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
 		game->map.grid[i] = line;
 		if (i == 0)
 			game->map.width = ft_strlen(line);
