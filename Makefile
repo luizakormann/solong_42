@@ -6,7 +6,7 @@
 #    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/04/18 21:56:03 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/18 22:42:28 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ $(LIBFT):
 LEAKS	:=	valgrind --leak-check=full --show-leak-kinds=all\
 		--track-origins=yes --log-file=valgrind-out.txt
 
-SUP	=	valgrind --suppressions=.suppress_mlx_error.sup ./so_long
+SUP	=	valgrind --suppressions=.supmlx.sup ./bin/so_long maps/test.ber
 
 valgrind: all
 	@$(LEAKS)
