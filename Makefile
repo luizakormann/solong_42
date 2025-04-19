@@ -6,7 +6,7 @@
 #    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/04/18 22:42:28 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/19 16:07:56 by lukorman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ COMP	= $(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 #                                  targets                                     #
 # **************************************************************************** #
 
-all: mlx git_submodule $(NAME)
+all: git_submodule mlx $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 	mkdir -p $(dir $@)
@@ -92,13 +92,9 @@ $(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
 $(LIBFT):
 	$(MAKE) -C $(LIB_DIR) all
 
-LEAKS	:=	valgrind --leak-check=full --show-leak-kinds=all\
-		--track-origins=yes --log-file=valgrind-out.txt
-
-SUP	=	valgrind --suppressions=.supmlx.sup ./bin/so_long maps/test.ber
-
-valgrind: all
-	@$(LEAKS)
+SUP	:=	valgrind --leak-check=full --show-leak-kinds=all\
+		--track-origins=yes --log-file=valgrind-out.txt --track-fds=yes\
+		--suppressions=.supmlx.sup ./bin/so_long maps/test.ber
 
 supmlx: all
 	@$(SUP)
@@ -112,6 +108,8 @@ mlx:
 
 clean:
 	$(RM) $(OBJ_DIR)
+	$(RM) valgrind-out.txt
+
 
 fclean: clean
 	$(RM) $(BIN_DIR)
@@ -119,4 +117,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re git_submodule mlx valgrind
+.PHONY: all clean fclean re git_submodule mlx supmlx
