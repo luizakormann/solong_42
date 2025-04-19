@@ -6,23 +6,11 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 23:42:23 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/19 01:23:49 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:14:28 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	init_images(t_game *game)
-{
-	game->img_capacity = 100;
-	game->img_count = 0;
-	game->images = malloc(sizeof(mlx_image_t *) * game->img_capacity);
-	if (!game->images)
-	{
-		ft_printf("Error: Failed to allocate memory for image tracking\n");
-		exit(EXIT_FAILURE);
-	}
-}
 
 void	grow_images_array(t_game *game)
 {

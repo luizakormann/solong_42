@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ultils_end.c                                       :+:      :+:    :+:   */
+/*   utils_end.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:12:12 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/19 00:41:03 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:43:20 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void free_images(t_game *game)
     game->images = NULL;
 }
 
-void	close_game(void *game)
+void	close_game(mlx_key_data_t key, void *game)
 {
 	t_game	*gamet;
 
@@ -84,12 +84,4 @@ void	close_game(void *game)
 	free_images(gamet);
 	free_map(&gamet->map);
 	mlx_close_window(gamet->mlx);
-}
-
-void	handle_input(void *param)
-{
-	t_game	*game = (t_game *)param;
-
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		close_game(game);
 }

@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 02:02:09 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:14:35 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,16 @@ void	init_game(t_game *game, char *map_file)
 	game->player.x = 0;
 	game->player.y = 0;
 	init_images(game);
+}
+
+void	init_images(t_game *game)
+{
+	game->img_capacity = 100;
+	game->img_count = 0;
+	game->images = malloc(sizeof(mlx_image_t *) * game->img_capacity);
+	if (!game->images)
+	{
+		ft_printf("Error: Failed to allocate memory for image tracking\n");
+		exit(EXIT_FAILURE);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 02:01:30 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:40:02 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	load_textures(t_game *game);
 void	load_and_parse_map(t_game *game, char *map_file);
 void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
 void	free_map(t_map *map);
-void	close_game(void *game);
+void	close_game(mlx_key_data_t key, void *game);
 void	handle_input(void *param);
 void	init_images(t_game *game);
 void	grow_images_array(t_game *game);
