@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 17:14:35 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/20 21:58:31 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	count_collectibles(t_game *game);
 
 void	init_game(t_game *game, char *map_file)
 {
@@ -20,13 +22,14 @@ void	init_game(t_game *game, char *map_file)
 	window_h = HEIGHT;
 	window_w = WIDTH;
 	game->map.grid = NULL;
-    game->images = NULL;
-    game->textures.wall = NULL;
-    game->textures.floor = NULL;
-    game->textures.player = NULL;
-    game->textures.exit = NULL;
-    game->textures.collectible = NULL;
+	game->images = NULL;
+	game->textures.wall = NULL;
+	game->textures.floor = NULL;
+	game->textures.player = NULL;
+	game->textures.exit = NULL;
+	game->textures.collectible = NULL;
 	open_map(game, map_file);
+	count_collectibles(game);
 	check_window(game->map.width, game->map.height, &window_w, &window_h);
 	game->mlx = mlx_init(window_w, window_h, "so_long", FALSE);
 	if (!game->mlx)
@@ -35,8 +38,6 @@ void	init_game(t_game *game, char *map_file)
 		ft_printf("Error initializing MLX");
 		exit(EXIT_FAILURE);
 	}
-	game->player.x = 0;
-	game->player.y = 0;
 	init_images(game);
 }
 
@@ -50,4 +51,26 @@ void	init_images(t_game *game)
 		ft_printf("Error: Failed to allocate memory for image tracking\n");
 		exit(EXIT_FAILURE);
 	}
+}
+
+static void count_collectibles(t_game *game)
+{
+	int x;
+	int y;
+
+	game->collectibles = 0;
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			if (game->map.grid[y][x] == 'C')
+				game->collectibles++;
+			x++;
+		}
+		y++;
+	}
+	game->collected = 0;
+	game->moves = 0;
 }

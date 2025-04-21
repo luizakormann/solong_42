@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 17:40:02 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/20 20:48:08 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ typedef struct s_game
 	mlx_image_t	**images;
 	int			img_count;
 	int			img_capacity;
+	int			collectibles;
+	int			collected;
+	int			moves;
 }	t_game;
 
 void	init_game(t_game *game, char *map_file);
@@ -68,13 +71,14 @@ void	load_textures(t_game *game);
 void	load_and_parse_map(t_game *game, char *map_file);
 void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
 void	free_map(t_map *map);
-void	close_game(mlx_key_data_t key, void *game);
-void	handle_input(void *param);
+void	close_game(void *param);
+void	key_handler(mlx_key_data_t keydata, void *param);
 void	init_images(t_game *game);
 void	grow_images_array(t_game *game);
 void	add_image(t_game *game, mlx_image_t *img);
 void	free_images(t_game *game);
 void	free_textures(t_game *game);
 void	render_background(t_game *game);
+void	move_player(t_game *game, int new_x, int new_y);
 
 #endif

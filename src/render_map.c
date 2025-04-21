@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 02:00:00 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/20 20:54:19 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	render_background(t_game *game)
 {
+	free_images(game);
+	init_images(game);
 	mlx_image_t	*bg;
+
 	int			map_width_px;
 	int			map_height_px;
 
 	map_width_px = game->map.width * WIDTH_TILE;
 	map_height_px = game->map.height * HEIGHT_TILE;
-
 	bg = mlx_texture_to_image(game->mlx, game->textures.floor);
 	if (!bg)
 	{

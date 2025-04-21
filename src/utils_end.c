@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_end.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:12:12 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/19 17:43:20 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/20 20:29:01 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,29 +59,29 @@ void	free_textures(t_game *game)
 
 void free_images(t_game *game)
 {
-    int i;
+	int i;
 
-    if (!game->images)
-        return;
+	if (!game->images)
+		return;
 
-    i = 0;
-    while (i < game->img_count)
-    {
-        if (game->images[i])
-            mlx_delete_image(game->mlx, game->images[i]);
-        i++;
-    }
-    free(game->images);
-    game->images = NULL;
+	i = 0;
+	while (i < game->img_count)
+	{
+		if (game->images[i])
+			mlx_delete_image(game->mlx, game->images[i]);
+		i++;
+	}
+	free(game->images);
+	game->images = NULL;
 }
 
-void	close_game(mlx_key_data_t key, void *game)
+void	close_game(void *param)
 {
-	t_game	*gamet;
+	t_game	*game;
 
-	gamet = (t_game *)game;
-	free_textures(gamet);
-	free_images(gamet);
-	free_map(&gamet->map);
-	mlx_close_window(gamet->mlx);
+	game = (t_game *)param;
+	free_textures(game);
+	free_images(game);
+	free_map(&game->map);
+	mlx_close_window(game->mlx);
 }
