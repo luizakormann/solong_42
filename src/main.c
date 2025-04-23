@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:34:06 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 21:52:30 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:32:16 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("Incorrect input.\n To run the game enter: ./so_long <map_file>\n");
+		ft_printf("Incorrect input.\n Use: ./so_long <map_file>\n");
 		return (EXIT_FAILURE);
 	}
 	if (!validate_file_extension(argv[1]))

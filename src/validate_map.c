@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:19:16 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 22:15:43 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:41:08 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	check_window(int map_w, int map_h, int *win_w, int *win_h)
 {
 	*win_h = map_h * HEIGHT_TILE;
 	*win_w = map_w * HEIGHT_TILE;
-
-
 	if (*win_h > HEIGHT)
 		*win_h = HEIGHT;
 	if (*win_w > WIDTH)
@@ -37,14 +35,14 @@ void	check_map_ret(char *line, int current_wid, int expected_wid, int fd)
 
 void	validate_map_elements(t_game *game)
 {
-	int x;
-	int y;
-	int exits;
-	int players;
-	int collectibles;
+	int	x;
+	int	y;
+	int	exits;
+	int	player;
+	int	collectibles;
 
 	exits = 0;
-	players = 0;
+	player = 0;
 	collectibles = 0;
 	y = 0;
 	while (y < game->map.height)
@@ -55,7 +53,7 @@ void	validate_map_elements(t_game *game)
 			if (game->map.grid[y][x] == 'E')
 				exits++;
 			else if (game->map.grid[y][x] == 'P')
-				players++;
+				player++;
 			else if (game->map.grid[y][x] == 'C')
 				collectibles++;
 			else if (game->map.grid[y][x] != '0' && game->map.grid[y][x] != '1')
@@ -68,9 +66,9 @@ void	validate_map_elements(t_game *game)
 		}
 		y++;
 	}
-	if (exits != 1 || players != 1 || collectibles < 1)
+	if (exits != 1 || player != 1 || collectibles < 1)
 	{
-		ft_printf("Error\nThe map must contain extactly: 1 (E), 1 (P)] and 1+ (C)");
+		ft_printf("Error\nThe map must contain: 1 (E), 1 (P)] and 1+ (C)");
 		free_map(&game->map);
 		exit(EXIT_FAILURE);
 	}
@@ -79,8 +77,8 @@ void	validate_map_elements(t_game *game)
 
 void	validate_map_walls(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (x < game->map.width)

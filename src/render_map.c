@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 21:56:03 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:39:15 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	render_background(t_game *game)
 {
+	mlx_image_t	*bg;
+	int			map_width_px;
+	int			map_height_px;
+
 	free_images(game);
 	init_images(game);
-	mlx_image_t	*bg;
-	int	map_width_px;
-	int	map_height_px;
-
 	map_width_px = game->map.width * WIDTH_TILE;
 	map_height_px = game->map.height * HEIGHT_TILE;
 	bg = mlx_texture_to_image(game->mlx, game->textures.floor);

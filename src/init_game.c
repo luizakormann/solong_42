@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 21:55:28 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:38:36 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 static void	count_collectibles(t_game *game);
 
-
 void	init_game(t_game *game, char *map_file)
 {
 	int	window_h;
 	int	window_w;
-
 
 	window_h = HEIGHT;
 	window_w = WIDTH;
@@ -45,7 +43,6 @@ void	init_game(t_game *game, char *map_file)
 	init_images(game);
 }
 
-
 void	init_images(t_game *game)
 {
 	game->img_capacity = 100;
@@ -57,7 +54,6 @@ void	init_images(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 }
-
 
 static void	count_collectibles(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 20:17:35 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 22:08:29 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:36:39 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	flood_fill(char **map, int x, int y, int *count)
 int	is_path_valid(t_game *game)
 {
 	char	**map_copy;
-	int	count;
-	int	total_to_collect;
-	int	i;
+	int		count;
+	int		total_to_collect;
+	int		i;
 
 	total_to_collect = game->collectibles + 1;
 	map_copy = create_map_copy(game);

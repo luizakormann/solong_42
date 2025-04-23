@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 21:54:53 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:42:42 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	count_map_lines(const char *map_file, int *line_count)
 	char	*line;
 
 	fd = open(map_file, O_RDONLY);
+	line = NULL;
 	if (fd < 0)
 	{
 		ft_printf("Error opening map file");
@@ -32,7 +33,6 @@ void	count_map_lines(const char *map_file, int *line_count)
 	close(fd);
 }
 
-
 void	read_map_content(t_game *game, const char *map_file, int line_count)
 {
 	int		fd;
@@ -42,6 +42,7 @@ void	read_map_content(t_game *game, const char *map_file, int line_count)
 	size_t	len;
 
 	fd = open(map_file, O_RDONLY);
+	line = NULL;
 	if (fd < 0)
 	{
 		ft_printf("Error reopening map file");
@@ -68,11 +69,9 @@ void	read_map_content(t_game *game, const char *map_file, int line_count)
 	close(fd);
 }
 
-
 void	open_map(t_game *game, const char *map_file)
 {
-	int line_count;
-
+	int	line_count;
 
 	line_count = 0;
 	count_map_lines(map_file, &line_count);

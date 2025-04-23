@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:37:47 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 21:58:58 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:35:40 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	load_textures(t_game *game)
 	}
 }
 
-
 void	load_and_parse_map(t_game *game, char *map_file)
 {
 	int		wid;
@@ -65,7 +64,6 @@ void	load_and_parse_map(t_game *game, char *map_file)
 	game->map.height = hei;
 }
 
-
 static void	parse_map_dimensions(char *map_file, int *wid, int *hei)
 {
 	int		fd;
@@ -74,6 +72,7 @@ static void	parse_map_dimensions(char *map_file, int *wid, int *hei)
 
 	fd = open(map_file, O_RDONLY);
 	current_wid = 0;
+	line = NULL;
 	if (fd < 0)
 	{
 		ft_printf("Error: cannot open map file");
@@ -94,17 +93,16 @@ static void	parse_map_dimensions(char *map_file, int *wid, int *hei)
 	close(fd);
 }
 
-
-static char **map_to_grid(char *map_file, int height)
+static char	**map_to_grid(char *map_file, int height)
 {
 	int		fd;
 	int		i;
 	char	*line;
 	char	**grid;
 
-
 	fd = open(map_file, O_RDONLY);
 	grid = malloc(sizeof(char *) * (height + 1));
+	line = NULL;
 	if (!grid)
 	{
 		ft_printf("Error: memory allocation failed");

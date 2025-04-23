@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_imgs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 23:42:23 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/19 17:14:28 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:36:23 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	grow_images_array(t_game *game)
 	if (!new_array)
 	{
 		ft_printf("Error: Failed to grow image array\n");
-		return;
+		return ;
 	}
 	i = 0;
 	while (i < game->img_count)

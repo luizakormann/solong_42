@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:40:03 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 21:57:56 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:44:19 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
-	if (new_x < 0 || new_x >= game->map.width ||
-		new_y < 0 || new_y >= game->map.height)
+	if (new_x < 0 || new_x >= game->map.width
+		|| new_y < 0 || new_y >= game->map.height)
 		return (0);
 	if (game->map.grid[new_y][new_x] == '1')
 		return (0);
@@ -24,7 +24,6 @@ static int	is_valid_move(t_game *game, int new_x, int new_y)
 		return (0);
 	return (1);
 }
-
 
 void	move_player(t_game *game, int new_x, int new_y)
 {
@@ -39,7 +38,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 	{
 		if (game->collected == game->collectibles)
 		{
-			ft_printf("Congratulations! You won with %d moves.\n", game->moves + 1);
+			ft_printf("The alien did it with %d moves :)\n", game->moves + 1);
 			mlx_close_window(game->mlx);
 			return ;
 		}
@@ -54,7 +53,6 @@ void	move_player(t_game *game, int new_x, int new_y)
 	render_background(game);
 	render_map(game);
 }
-
 
 void	key_handler(mlx_key_data_t keydata, void *param)
 {

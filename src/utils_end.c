@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:12:12 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 21:56:32 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:37:38 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_map(t_map *map)
 	int	i;
 
 	if (!map->grid)
-		return;
+		return ;
 	i = 0;
 	while (i < map->height)
 	{
@@ -62,8 +62,7 @@ void	free_images(t_game *game)
 	int	i;
 
 	if (!game->images)
-		return;
-
+		return ;
 	i = 0;
 	while (i < game->img_count)
 	{
