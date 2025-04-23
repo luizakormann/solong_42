@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/20 20:48:08 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 21:39:18 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,12 @@ void	free_images(t_game *game);
 void	free_textures(t_game *game);
 void	render_background(t_game *game);
 void	move_player(t_game *game, int new_x, int new_y);
+void	validate_map_elements(t_game *game);
+void	validate_map_walls(t_game *game);
+void	validate_path(t_game *game);
+void	validate_map(t_game *game);
+void	flood_fill(char **map, int x, int y, int *count);
+int		is_path_valid(t_game *game);
+int		validate_file_extension(char *filename);
 
 #endif

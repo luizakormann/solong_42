@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:12:12 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/20 20:29:01 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 21:56:32 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	free_textures(t_game *game)
 	}
 }
 
-void free_images(t_game *game)
+void	free_images(t_game *game)
 {
-	int i;
+	int	i;
 
 	if (!game->images)
 		return;

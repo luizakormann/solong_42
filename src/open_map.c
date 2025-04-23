@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/19 00:15:24 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/22 21:54:53 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	count_map_lines(const char *map_file, int *line_count)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error opening map file");
+		ft_printf("Error opening map file");
 		exit(EXIT_FAILURE);
 	}
 	*line_count = 0;
@@ -31,6 +31,7 @@ void	count_map_lines(const char *map_file, int *line_count)
 	}
 	close(fd);
 }
+
 
 void	read_map_content(t_game *game, const char *map_file, int line_count)
 {
@@ -43,7 +44,7 @@ void	read_map_content(t_game *game, const char *map_file, int line_count)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error reopening map file");
+		ft_printf("Error reopening map file");
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
@@ -67,9 +68,11 @@ void	read_map_content(t_game *game, const char *map_file, int line_count)
 	close(fd);
 }
 
+
 void	open_map(t_game *game, const char *map_file)
 {
-	int	line_count;
+	int line_count;
+
 
 	line_count = 0;
 	count_map_lines(map_file, &line_count);
@@ -77,7 +80,7 @@ void	open_map(t_game *game, const char *map_file)
 	game->map.grid = malloc(sizeof(char *) * (line_count + 1));
 	if (!game->map.grid)
 	{
-		perror("Error allocating map grid");
+		ft_printf("Error allocating map grid");
 		exit(EXIT_FAILURE);
 	}
 	read_map_content(game, map_file, line_count);

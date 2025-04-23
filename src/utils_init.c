@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:37:47 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/18 23:46:48 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/22 21:58:58 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	load_textures(t_game *game)
 	}
 }
 
+
 void	load_and_parse_map(t_game *game, char *map_file)
 {
 	int		wid;
@@ -63,6 +64,7 @@ void	load_and_parse_map(t_game *game, char *map_file)
 	game->map.width = wid;
 	game->map.height = hei;
 }
+
 
 static void	parse_map_dimensions(char *map_file, int *wid, int *hei)
 {
@@ -92,12 +94,14 @@ static void	parse_map_dimensions(char *map_file, int *wid, int *hei)
 	close(fd);
 }
 
-static char	**map_to_grid(char *map_file, int height)
+
+static char **map_to_grid(char *map_file, int height)
 {
 	int		fd;
 	int		i;
 	char	*line;
 	char	**grid;
+
 
 	fd = open(map_file, O_RDONLY);
 	grid = malloc(sizeof(char *) * (height + 1));

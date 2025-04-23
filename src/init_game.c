@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/20 21:58:31 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 21:55:28 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static void	count_collectibles(t_game *game);
 
+
 void	init_game(t_game *game, char *map_file)
 {
 	int	window_h;
 	int	window_w;
+
 
 	window_h = HEIGHT;
 	window_w = WIDTH;
@@ -29,6 +31,8 @@ void	init_game(t_game *game, char *map_file)
 	game->textures.exit = NULL;
 	game->textures.collectible = NULL;
 	open_map(game, map_file);
+	validate_map(game);
+	validate_path(game);
 	count_collectibles(game);
 	check_window(game->map.width, game->map.height, &window_w, &window_h);
 	game->mlx = mlx_init(window_w, window_h, "so_long", FALSE);
@@ -40,6 +44,7 @@ void	init_game(t_game *game, char *map_file)
 	}
 	init_images(game);
 }
+
 
 void	init_images(t_game *game)
 {
@@ -53,10 +58,11 @@ void	init_images(t_game *game)
 	}
 }
 
-static void count_collectibles(t_game *game)
+
+static void	count_collectibles(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	game->collectibles = 0;
 	y = 0;
