@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:19:16 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 22:13:37 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 22:15:43 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	validate_map_walls(t_game *game)
 		if (game->map.grid[0][x] != '1' ||
 			game->map.grid[game->map.height - 1][x] != '1')
 		{
-			ft_printf("Error\nO mapa deve estar cercado por paredes\n");
+			ft_printf("Error\nMap must be surrounded by walls\n");
 			free_map(&game->map);
 			exit(EXIT_FAILURE);
 		}
@@ -100,7 +100,7 @@ void	validate_map_walls(t_game *game)
 		if (game->map.grid[y][0] != '1' ||
 			game->map.grid[y][game->map.width - 1] != '1')
 		{
-			ft_printf("Error\nO mapa deve estar cercado por paredes\n");
+			ft_printf("Error\nMap must be surrounded by walls\n");
 			free_map(&game->map);
 			exit(EXIT_FAILURE);
 		}
