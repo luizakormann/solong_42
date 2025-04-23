@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+         #
+#    By: luiza <luiza@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 19:42:06 by luiza             #+#    #+#              #
-#    Updated: 2025/04/19 16:07:56 by lukorman         ###   ########.fr        #
+#    Updated: 2025/04/23 00:18:24 by luiza            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,12 +92,14 @@ $(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
 $(LIBFT):
 	$(MAKE) -C $(LIB_DIR) all
 
+MAP ?= maps/test.ber
+
 SUP	:=	valgrind --leak-check=full --show-leak-kinds=all\
 		--track-origins=yes --log-file=valgrind-out.txt --track-fds=yes\
-		--suppressions=.supmlx.sup ./bin/so_long maps/test.ber
+		--suppressions=.supmlx.sup
 
 supmlx: all
-	@$(SUP)
+	@$(SUP) ./bin/so_long $(MAP)
 
 git_submodule:
 	git submodule update --init --recursive
@@ -113,6 +115,7 @@ clean:
 
 fclean: clean
 	$(RM) $(BIN_DIR)
+	$(RM) valgrind-out.txt
 	$(MAKE) -C $(LIB_DIR) fclean
 
 re: fclean all
