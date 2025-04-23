@@ -6,11 +6,32 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 22:39:15 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:50:27 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void		render_background(t_game *game);
+static void	render_tile(t_game *game, char tile, int x, int y);
+
+void	render_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			render_tile(game, game->map.grid[y][x], x, y);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	render_background(t_game *game)
 {
@@ -53,23 +74,5 @@ static void	render_tile(t_game *game, char tile, int x, int y)
 		mlx_resize_image(img, WIDTH_TILE, HEIGHT_TILE);
 		mlx_image_to_window(game->mlx, img, x * WIDTH_TILE, y * HEIGHT_TILE);
 		add_image(game, img);
-	}
-}
-
-void	render_map(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < game->map.height)
-	{
-		x = 0;
-		while (x < game->map.width)
-		{
-			render_tile(game, game->map.grid[y][x], x, y);
-			x++;
-		}
-		y++;
 	}
 }

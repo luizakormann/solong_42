@@ -6,11 +6,15 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:12:12 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 22:37:38 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:51:02 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	free_textures(t_game *game);
+void	free_images(t_game *game);
+void	close_game(void *param);
 
 void	free_map(t_map *map)
 {

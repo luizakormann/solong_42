@@ -6,11 +6,20 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 23:35:38 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 23:35:56 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:59:19 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	check_horizontal_walls(t_game *game);
+static void	check_vertical_walls(t_game *game);
+
+void	validate_map_walls(t_game *game)
+{
+	check_horizontal_walls(game);
+	check_vertical_walls(game);
+}
 
 static void	check_horizontal_walls(t_game *game)
 {
@@ -46,10 +55,4 @@ static void	check_vertical_walls(t_game *game)
 		}
 		y++;
 	}
-}
-
-void	validate_map_walls(t_game *game)
-{
-	check_horizontal_walls(game);
-	check_vertical_walls(game);
 }

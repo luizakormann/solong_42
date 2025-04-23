@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 23:20:06 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:37:33 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,6 @@ void	init_game(t_game *game, char *map_file)
 		exit(EXIT_FAILURE);
 	}
 	init_images(game);
-}
-
-void	init_images(t_game *game)
-{
-	game->img_capacity = 100;
-	game->img_count = 0;
-	game->images = malloc(sizeof(mlx_image_t *) * game->img_capacity);
-	if (!game->images)
-	{
-		ft_printf("Error: Failed to allocate memory for image tracking\n");
-		exit(EXIT_FAILURE);
-	}
 }
 
 static void	count_collectibles(t_game *game)

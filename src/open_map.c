@@ -6,11 +6,32 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 00:21:30 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 01:00:09 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void		count_map_lines(const char *map_file, int *line_count);
+static void	process_map_line(t_game *game, char *line, int i);
+static void	read_map_lines(t_game *game, int fd);
+void		read_map_content(t_game *game, const char *map_file);
+
+void	open_map(t_game *game, const char *map_file)
+{
+	int	line_count;
+
+	line_count = 0;
+	count_map_lines(map_file, &line_count);
+	game->map.height = line_count;
+	game->map.grid = malloc(sizeof(char *) * (line_count + 1));
+	if (!game->map.grid)
+	{
+		ft_printf("Error allocating map grid\n");
+		exit(EXIT_FAILURE);
+	}
+	read_map_content(game, map_file);
+}
 
 void	count_map_lines(const char *map_file, int *line_count)
 {
@@ -81,20 +102,4 @@ void	read_map_content(t_game *game, const char *map_file)
 	}
 	read_map_lines(game, fd);
 	close(fd);
-}
-
-void	open_map(t_game *game, const char *map_file)
-{
-	int	line_count;
-
-	line_count = 0;
-	count_map_lines(map_file, &line_count);
-	game->map.height = line_count;
-	game->map.grid = malloc(sizeof(char *) * (line_count + 1));
-	if (!game->map.grid)
-	{
-		ft_printf("Error allocating map grid\n");
-		exit(EXIT_FAILURE);
-	}
-	read_map_content(game, map_file);
 }

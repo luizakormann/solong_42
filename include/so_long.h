@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 21:39:18 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:44:56 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,23 @@ typedef struct s_game
 }	t_game;
 
 void	init_game(t_game *game, char *map_file);
-void	open_map(t_game *game, const char *map_file);
-void	render_map(t_game *game);
-void	check_window(int map_w, int map_h, int *win_w, int *win_h);
 void	load_textures(t_game *game);
-void	load_and_parse_map(t_game *game, char *map_file);
-void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
-void	free_map(t_map *map);
-void	close_game(void *param);
+void	render_map(t_game *game);
+void	render_background(t_game *game);
+void	move_player(t_game *game, int new_x, int new_y);
 void	key_handler(mlx_key_data_t keydata, void *param);
+void	close_game(void *param);
 void	init_images(t_game *game);
 void	grow_images_array(t_game *game);
 void	add_image(t_game *game, mlx_image_t *img);
 void	free_images(t_game *game);
-void	free_textures(t_game *game);
-void	render_background(t_game *game);
-void	move_player(t_game *game, int new_x, int new_y);
-void	validate_map_elements(t_game *game);
+void	open_map(t_game *game, const char *map_file);
+void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
 void	validate_map_walls(t_game *game);
-void	validate_path(t_game *game);
+void	free_map(t_map *map);
 void	validate_map(t_game *game);
-void	flood_fill(char **map, int x, int y, int *count);
-int		is_path_valid(t_game *game);
+void	validate_path(t_game *game);
 int		validate_file_extension(char *filename);
+void	free_textures(t_game *game);
 
 #endif
