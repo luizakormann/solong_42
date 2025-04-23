@@ -6,13 +6,14 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 22:38:36 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 23:20:06 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 static void	count_collectibles(t_game *game);
+void		check_window(int map_w, int map_h, int *win_w, int *win_h);
 
 void	init_game(t_game *game, char *map_file)
 {
@@ -75,4 +76,14 @@ static void	count_collectibles(t_game *game)
 	}
 	game->collected = 0;
 	game->moves = 0;
+}
+
+void	check_window(int map_w, int map_h, int *win_w, int *win_h)
+{
+	*win_h = map_h * HEIGHT_TILE;
+	*win_w = map_w * HEIGHT_TILE;
+	if (*win_h > HEIGHT)
+		*win_h = HEIGHT;
+	if (*win_w > WIDTH)
+		*win_w = WIDTH;
 }

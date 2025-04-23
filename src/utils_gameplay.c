@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:40:03 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 22:44:19 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 23:47:47 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	move_player(t_game *game, int new_x, int new_y)
 		{
 			ft_printf("The alien did it with %d moves :)\n", game->moves + 1);
 			mlx_close_window(game->mlx);
-			return ;
 		}
 		return ;
 	}
-	game->map.grid[game->player.y][game->player.x] = '0';
+	if (game->map.grid[game->player.y][game->player.x] != 'E')
+		game->map.grid[game->player.y][game->player.x] = '0';
 	game->map.grid[new_y][new_x] = 'P';
 	game->player.x = new_x;
 	game->player.y = new_y;
 	game->moves++;
-	ft_printf("Moves: %d\n", game->moves);
+	ft_printf("Looking for human trash..Move count: %d\n", game->moves);
 	render_background(game);
 	render_map(game);
 }
