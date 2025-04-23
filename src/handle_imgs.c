@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 23:42:23 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 22:36:23 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/22 23:04:14 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	grow_images_array(t_game *game)
 	if (!new_array)
 	{
 		ft_printf("Error: Failed to grow image array\n");
+		mlx_close_window(game->mlx);
 		return ;
 	}
 	i = 0;
