@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 23:59:24 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 00:00:55 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:22:43 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	parse_map_dimensions(char *map_file, int *wid, int *hei)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error: cannot open map file");
+		ft_printf("Error: cannot open map file\n");
 		exit(EXIT_FAILURE);
 	}
 	count_map_lines(fd, wid, hei);
@@ -87,7 +87,7 @@ static char	**fill_grid(int fd, int height)
 	grid = malloc(sizeof(char *) * (height + 1));
 	if (!grid)
 	{
-		ft_printf("Error: memory allocation failed");
+		ft_printf("Error: memory allocation failed\n");
 		close(fd);
 		exit(EXIT_FAILURE);
 	}

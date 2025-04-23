@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/22 23:57:39 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:21:30 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	count_map_lines(const char *map_file, int *line_count)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error opening map file");
+		ft_printf("Error opening map file\n");
 		exit(EXIT_FAILURE);
 	}
 	*line_count = 0;
@@ -76,7 +76,7 @@ void	read_map_content(t_game *game, const char *map_file)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error reopening map file");
+		ft_printf("Error reopening map file\n");
 		exit(EXIT_FAILURE);
 	}
 	read_map_lines(game, fd);
@@ -93,7 +93,7 @@ void	open_map(t_game *game, const char *map_file)
 	game->map.grid = malloc(sizeof(char *) * (line_count + 1));
 	if (!game->map.grid)
 	{
-		ft_printf("Error allocating map grid");
+		ft_printf("Error allocating map grid\n");
 		exit(EXIT_FAILURE);
 	}
 	read_map_content(game, map_file);

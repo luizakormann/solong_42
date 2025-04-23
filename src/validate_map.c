@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:19:16 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/22 23:38:24 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 00:24:52 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_element_counts(int exits, int player, int clct, t_game *game)
 {
 	if (exits != 1 || player != 1 || clct < 1)
 	{
-		ft_printf("Error\nThe map must contain: 1 (E), 1 (P) and 1+ (C)");
+		ft_printf("Error\nThe map must contain: 1 (E), 1 (P) and 1+ (C)\n");
 		free_map(&game->map);
 		exit(EXIT_FAILURE);
 	}
@@ -27,7 +27,7 @@ void	check_map_ret(char *line, int current_wid, int expected_wid, int fd)
 {
 	if (current_wid != expected_wid)
 	{
-		ft_printf("Error: Map is not rectangular.");
+		ft_printf("Error: Map is not rectangular.\n");
 		free(line);
 		close(fd);
 		exit(EXIT_FAILURE);
