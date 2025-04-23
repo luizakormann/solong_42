@@ -6,7 +6,7 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 01:19:14 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 02:03:19 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@
 # define HEIGHT_TILE 32
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MAX_MAP_HEIGHT (HEIGHT / HEIGHT_TILE)
 # define TRUE 1
 # define FALSE 0
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/include/libft.h"
 # include <fcntl.h>
-# include <math.h>
-# include <stdio.h>
 
 typedef struct s_map
 {
@@ -82,5 +79,9 @@ void	validate_map(t_game *game);
 void	validate_path(t_game *game);
 int		validate_file_extension(char *filename);
 void	free_textures(t_game *game);
+void	count_map_lines(const char *map_file, int *line_count);
+void	verify_map_lines(int fd, int *line_count, int *expected_width);
+void	check_width_consistency(char *line, int current_width,
+			int expected_width, int fd);
 
 #endif

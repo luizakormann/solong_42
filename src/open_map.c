@@ -6,13 +6,12 @@
 /*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 01:00:09 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 01:57:57 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void		count_map_lines(const char *map_file, int *line_count);
 static void	process_map_line(t_game *game, char *line, int i);
 static void	read_map_lines(t_game *game, int fd);
 void		read_map_content(t_game *game, const char *map_file);
@@ -31,28 +30,6 @@ void	open_map(t_game *game, const char *map_file)
 		exit(EXIT_FAILURE);
 	}
 	read_map_content(game, map_file);
-}
-
-void	count_map_lines(const char *map_file, int *line_count)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(map_file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("Error opening map file\n");
-		exit(EXIT_FAILURE);
-	}
-	*line_count = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		(*line_count)++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
 }
 
 static void	process_map_line(t_game *game, char *line, int i)
