@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 21:41:27 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:50:23 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		render_background(t_game *game);
 static void	render_tile(t_game *game, char tile, int x, int y);
-static int	calculate_tile_h(t_game *game);
-static int	calculate_tile_w(t_game *game);
+static int	resize_wid(t_game *game);
+static int	resize_hei(t_game *game);
 
 void	render_map(t_game *game)
 {
@@ -45,6 +45,10 @@ void	render_background(t_game *game)
 	init_images(game);
 	map_width_px = game->map.width * WIDTH_TILE;
 	map_height_px = game->map.height * HEIGHT_TILE;
+	if (map_width_px > game->wid)
+		map_width_px = game->wid;
+	if (map_height_px > game->hei)
+		map_height_px = game->hei;
 	bg = mlx_texture_to_image(game->mlx, game->textures.floor);
 	if (!bg)
 	{
@@ -59,57 +63,46 @@ void	render_background(t_game *game)
 static void	render_tile(t_game *game, char tile, int x, int y)
 {
 	mlx_image_t	*img;
-	int			tile_w;
-	int			tile_h;
+	int			tile_width;
+	int			tile_height;
 
 	img = NULL;
-	tile_h = calculate_tile_h(game);;
-	tile_w = 0;
-
+	tile_height = resize_hei(game);
+	tile_width = resize_wid(game);
 	if (tile == '1')
-		img = mlx_texture_to_image(game->mlx, game->textures.wall);
+	img = mlx_texture_to_image(game->mlx, game->textures.wall);
 	else if (tile == 'P')
-		img = mlx_texture_to_image(game->mlx, game->textures.player);
+	img = mlx_texture_to_image(game->mlx, game->textures.player);
 	else if (tile == 'E')
-		img = mlx_texture_to_image(game->mlx, game->textures.exit);
+	img = mlx_texture_to_image(game->mlx, game->textures.exit);
 	else if (tile == 'C')
-		img = mlx_texture_to_image(game->mlx, game->textures.collectible);
+	img = mlx_texture_to_image(game->mlx, game->textures.collectible);
 	else
 		return ;
 	if (img)
 	{
-		mlx_resize_image(img, tile_w, tile_h);
-		mlx_image_to_window(game->mlx, img, x * tile_w, y * tile_h);
+		mlx_resize_image(img, tile_width, tile_height);
+		mlx_image_to_window(game->mlx, img, x * tile_width, y * tile_height);
 		add_image(game, img);
 	}
 }
 
-static int	calculate_tile_h(t_game *game)
+static int	resize_wid(t_game *game)
 {
-	int	window_w;
-	int	window_h;
-	int	tile_h;
+	int	tile_width;
 
-	mlx_get_window_size(game->mlx, &window_w, &window_h);
-	tile_h = window_h / game->map.height;
-	if (tile_h > window_w / game->map.width)
-		tile_h = window_w / game->map.width;
-	if (tile_h < 16)
-		tile_h = 16;
-	return (tile_h);
+	tile_width = (game->wid / game->map.width);
+	if (tile_width > WIDTH_TILE)
+		tile_width = WIDTH_TILE;
+	return (tile_width);
 }
 
-static int	calculate_tile_w(t_game *game)
+static int	resize_hei(t_game *game)
 {
-	int	window_w;
-	int	window_h;
-	int	tile_w;
+	int	tile_height;
 
-	mlx_set_window_size(game->mlx, window_w, window_h);
-	tile_w = window_w / game->map.width;
-	if (tile_w > window_h / game->map.height)
-		tile_w = window_h / game->map.height;
-	if (tile_w < 16)
-		tile_w = 16;
-	return (tile_w);
+	tile_height = (game->hei / game->map.height);
+	if (tile_height > HEIGHT_TILE)
+		tile_height = HEIGHT_TILE;
+	return (tile_height);
 }

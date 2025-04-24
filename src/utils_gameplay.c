@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:40:03 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/23 21:24:58 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:40:38 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		move_player(t_game *game, int new_x, int new_y);
 static int	is_valid_move(t_game *game, int new_x, int new_y);
-void 		resize_handler(int width, int height, void *param);
+void		resize_handler(int width, int height, void *param);
 
 void	key_handler(mlx_key_data_t keydata, void *param)
 {
@@ -84,15 +84,15 @@ static int	is_valid_move(t_game *game, int new_x, int new_y)
 	return (1);
 }
 
-void resize_handler(int width, int height, void *param)
+void	resize_handler(int width, int height, void *param)
 {
-    t_game *game;
+	t_game	*game;
 
-    game = (t_game *)param;
-
-    (void)width;
-    (void)height;
-
+	game = (t_game *)param;
+	(void)width;
+	(void)height;
+	game->wid = width;
+	game->hei = height;
 	render_background(game);
-    render_map(game);
+	render_map(game);
 }
