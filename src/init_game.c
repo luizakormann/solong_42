@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 01:36:29 by luiza            ###   ########.fr       */
+/*   Updated: 2025/04/23 21:25:37 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void	init_game(t_game *game, char *map_file)
 	validate_path(game);
 	count_collectibles(game);
 	check_window(game->map.width, game->map.height, &window_w, &window_h);
-	game->mlx = mlx_init(window_w, window_h, "so_long", FALSE);
+	game->mlx = mlx_init(window_w, window_h, "so_long", TRUE);
 	if (!game->mlx)
 	{
 		free_map(&game->map);
 		ft_printf("Error initializing MLX");
 		exit(EXIT_FAILURE);
 	}
+	mlx_resize_hook(game->mlx, resize_handler, game);
 	init_images(game);
 }
 
