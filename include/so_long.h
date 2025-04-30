@@ -6,14 +6,14 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 22:38:13 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/29 22:04:55 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define WIDTH_TILE 64
-# define HEIGHT_TILE 64
+# define WIDTH_TILE 32
+# define HEIGHT_TILE 32
 # define WIDTH 1920
 # define HEIGHT 1080
 # define TRUE 1
