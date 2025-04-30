@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:40:03 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/23 22:40:38 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/04/29 22:25:14 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	key_handler(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		new_x++;
 	else if (keydata.key == MLX_KEY_ESCAPE)
+	{
 		mlx_close_window(game->mlx);
+		return ;
+	}
 	else
 		return ;
 	move_player(game, new_x, new_y);
