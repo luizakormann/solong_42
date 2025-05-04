@@ -3,18 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils_end.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 21:12:12 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/23 00:51:02 by luiza            ###   ########.fr       */
+/*   Updated: 2025/05/04 17:09:19 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void	close_game(void *param);
+void	free_map(t_map *map);
 void	free_textures(t_game *game);
 void	free_images(t_game *game);
-void	close_game(void *param);
+
+void	close_game(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	free_textures(game);
+	free_images(game);
+	free_map(&game->map);
+	mlx_close_window(game->mlx);
+}
 
 void	free_map(t_map *map)
 {
@@ -76,15 +88,4 @@ void	free_images(t_game *game)
 	}
 	free(game->images);
 	game->images = NULL;
-}
-
-void	close_game(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	free_textures(game);
-	free_images(game);
-	free_map(&game->map);
-	mlx_close_window(game->mlx);
 }

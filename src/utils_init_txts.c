@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init_txts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:37:47 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/23 00:01:05 by luiza            ###   ########.fr       */
+/*   Updated: 2025/05/04 17:10:15 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void		load_textures(t_game *game);
 static void	load_single_texture(mlx_texture_t **texture, char *path);
 
 void	load_textures(t_game *game)

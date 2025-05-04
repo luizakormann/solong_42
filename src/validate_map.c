@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:19:16 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/23 01:19:37 by luiza            ###   ########.fr       */
+/*   Updated: 2025/05/04 16:32:08 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void		validate_map(t_game *game);
 void		validate_map_elements(t_game *game);
 static void	count_elements(t_game *game, int *e, int *p, int *c);
 static void	check_element_counts(int exits, int player, int clct, t_game *game);
-void		check_map_ret(char *line, int cur_wid, int expected_wid, int fd);
 
 void	validate_map(t_game *game)
 {
@@ -76,15 +76,4 @@ static void	check_element_counts(int exits, int player, int clct, t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	game->collectibles = clct;
-}
-
-void	check_map_ret(char *line, int cur_wid, int expected_wid, int fd)
-{
-	if (cur_wid != expected_wid)
-	{
-		ft_printf("Error: Map is not rectangular.\n");
-		free(line);
-		close(fd);
-		exit(EXIT_FAILURE);
-	}
 }

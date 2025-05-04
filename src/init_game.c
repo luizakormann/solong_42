@@ -6,15 +6,16 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:31:05 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 22:43:32 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/05/04 17:06:13 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void		init_game(t_game *game, char *map_file);
+static void	populate_struct(t_game *game);
 static void	count_collectibles(t_game *game);
 static void	check_window(int map_w, int map_h, int *win_w, int *win_h);
-static void	populate_struct(t_game *game);
 
 void	init_game(t_game *game, char *map_file)
 {
@@ -24,7 +25,7 @@ void	init_game(t_game *game, char *map_file)
 	window_h = HEIGHT;
 	window_w = WIDTH;
 	populate_struct(game);
-	open_map(game, map_file);
+	init_map(game, map_file);
 	validate_map(game);
 	validate_path(game);
 	count_collectibles(game);
@@ -38,6 +39,19 @@ void	init_game(t_game *game, char *map_file)
 	}
 	mlx_resize_hook(game->mlx, resize_handler, game);
 	init_images(game);
+}
+
+static void	populate_struct(t_game *game)
+{
+	game->map.grid = NULL;
+	game->images = NULL;
+	game->textures.wall = NULL;
+	game->textures.floor = NULL;
+	game->textures.player = NULL;
+	game->textures.exit = NULL;
+	game->textures.collectible = NULL;
+	game->hei = HEIGHT;
+	game->wid = WIDTH;
 }
 
 static void	count_collectibles(t_game *game)
@@ -70,17 +84,4 @@ static void	check_window(int map_w, int map_h, int *win_w, int *win_h)
 	*win_h = HEIGHT;
 	if (*win_w > WIDTH)
 	*win_w = WIDTH;
-}
-
-static void	populate_struct(t_game *game)
-{
-	game->map.grid = NULL;
-	game->images = NULL;
-	game->textures.wall = NULL;
-	game->textures.floor = NULL;
-	game->textures.player = NULL;
-	game->textures.exit = NULL;
-	game->textures.collectible = NULL;
-	game->hei = HEIGHT;
-	game->wid = WIDTH;
 }

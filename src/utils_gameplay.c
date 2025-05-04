@@ -6,12 +6,13 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:40:03 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/29 22:25:14 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/05/04 17:09:33 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void		key_handler(mlx_key_data_t keydata, void *param);
 void		move_player(t_game *game, int new_x, int new_y);
 static int	is_valid_move(t_game *game, int new_x, int new_y);
 void		resize_handler(int width, int height, void *param);

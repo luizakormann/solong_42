@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validate_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 20:17:35 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 00:58:15 by luiza            ###   ########.fr       */
+/*   Updated: 2025/05/04 17:10:44 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void		validate_path(t_game *game);
 int			is_path_valid(t_game *game);
 static char	**create_map_copy(t_game *game);
 void		flood_fill(char **map, int x, int y, int *count);

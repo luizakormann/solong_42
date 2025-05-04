@@ -6,16 +6,17 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:44:28 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 22:50:23 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/05/04 17:08:42 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void		render_background(t_game *game);
+void		render_map(t_game *game);
 static void	render_tile(t_game *game, char tile, int x, int y);
-static int	resize_wid(t_game *game);
 static int	resize_hei(t_game *game);
+static int	resize_wid(t_game *game);
+void		render_background(t_game *game);
 
 void	render_map(t_game *game)
 {
@@ -33,31 +34,6 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
-}
-
-void	render_background(t_game *game)
-{
-	mlx_image_t	*bg;
-	int			map_width_px;
-	int			map_height_px;
-
-	free_images(game);
-	init_images(game);
-	map_width_px = game->map.width * WIDTH_TILE;
-	map_height_px = game->map.height * HEIGHT_TILE;
-	if (map_width_px > game->wid)
-		map_width_px = game->wid;
-	if (map_height_px > game->hei)
-		map_height_px = game->hei;
-	bg = mlx_texture_to_image(game->mlx, game->textures.floor);
-	if (!bg)
-	{
-		ft_printf("Error loading background image\n");
-		exit(EXIT_FAILURE);
-	}
-	mlx_resize_image(bg, map_width_px, map_height_px);
-	mlx_image_to_window(game->mlx, bg, 0, 0);
-	add_image(game, bg);
 }
 
 static void	render_tile(t_game *game, char tile, int x, int y)
@@ -87,6 +63,16 @@ static void	render_tile(t_game *game, char tile, int x, int y)
 	}
 }
 
+static int	resize_hei(t_game *game)
+{
+	int	tile_height;
+
+	tile_height = (game->hei / game->map.height);
+	if (tile_height > HEIGHT_TILE)
+		tile_height = HEIGHT_TILE;
+	return (tile_height);
+}
+
 static int	resize_wid(t_game *game)
 {
 	int	tile_width;
@@ -97,12 +83,27 @@ static int	resize_wid(t_game *game)
 	return (tile_width);
 }
 
-static int	resize_hei(t_game *game)
+void	render_background(t_game *game)
 {
-	int	tile_height;
+	mlx_image_t	*bg;
+	int			map_width_px;
+	int			map_height_px;
 
-	tile_height = (game->hei / game->map.height);
-	if (tile_height > HEIGHT_TILE)
-		tile_height = HEIGHT_TILE;
-	return (tile_height);
+	free_images(game);
+	init_images(game);
+	map_width_px = game->map.width * WIDTH_TILE;
+	map_height_px = game->map.height * HEIGHT_TILE;
+	if (map_width_px > game->wid)
+		map_width_px = game->wid;
+	if (map_height_px > game->hei)
+		map_height_px = game->hei;
+	bg = mlx_texture_to_image(game->mlx, game->textures.floor);
+	if (!bg)
+	{
+		ft_printf("Error loading background image\n");
+		exit(EXIT_FAILURE);
+	}
+	mlx_resize_image(bg, map_width_px, map_height_px);
+	mlx_image_to_window(game->mlx, bg, 0, 0);
+	add_image(game, bg);
 }

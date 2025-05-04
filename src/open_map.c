@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/23 01:57:57 by luiza            ###   ########.fr       */
+/*   Updated: 2025/05/04 17:06:37 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	process_map_line(t_game *game, char *line, int i);
-static void	read_map_lines(t_game *game, int fd);
+void		init_map(t_game *game, const char *map_file);
 void		read_map_content(t_game *game, const char *map_file);
+static void	read_map_lines(t_game *game, int fd);
+static void	process_map_line(t_game *game, char *line, int i);
 
-void	open_map(t_game *game, const char *map_file)
+void	init_map(t_game *game, const char *map_file)
 {
 	int	line_count;
 
 	line_count = 0;
-	count_map_lines(map_file, &line_count);
+	open_map(map_file, &line_count);
 	game->map.height = line_count;
 	game->map.grid = malloc(sizeof(char *) * (line_count + 1));
 	if (!game->map.grid)
@@ -30,6 +31,35 @@ void	open_map(t_game *game, const char *map_file)
 		exit(EXIT_FAILURE);
 	}
 	read_map_content(game, map_file);
+}
+
+void	read_map_content(t_game *game, const char *map_file)
+{
+	int		fd;
+
+	fd = open(map_file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error reopening map file\n");
+		exit(EXIT_FAILURE);
+	}
+	read_map_lines(game, fd);
+	close(fd);
+}
+
+static void	read_map_lines(t_game *game, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		process_map_line(game, line, i);
+		line = get_next_line(fd);
+		i++;
+	}
 }
 
 static void	process_map_line(t_game *game, char *line, int i)
@@ -50,33 +80,4 @@ static void	process_map_line(t_game *game, char *line, int i)
 		game->player.y = i;
 	}
 	free(line);
-}
-
-static void	read_map_lines(t_game *game, int fd)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		process_map_line(game, line, i);
-		line = get_next_line(fd);
-		i++;
-	}
-}
-
-void	read_map_content(t_game *game, const char *map_file)
-{
-	int		fd;
-
-	fd = open(map_file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("Error reopening map file\n");
-		exit(EXIT_FAILURE);
-	}
-	read_map_lines(game, fd);
-	close(fd);
 }

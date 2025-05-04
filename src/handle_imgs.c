@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_imgs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 23:42:23 by lukorman          #+#    #+#             */
-/*   Updated: 2025/04/23 01:17:37 by luiza            ###   ########.fr       */
+/*   Updated: 2025/05/04 17:05:19 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void	init_images(t_game *game);
 void	grow_images_array(t_game *game);
 void	add_image(t_game *game, mlx_image_t *img);
 

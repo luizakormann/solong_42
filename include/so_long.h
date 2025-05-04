@@ -6,7 +6,7 @@
 /*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:35:19 by luiza             #+#    #+#             */
-/*   Updated: 2025/04/29 22:04:55 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:32:19 by lukorman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,16 @@ void	init_images(t_game *game);
 void	grow_images_array(t_game *game);
 void	add_image(t_game *game, mlx_image_t *img);
 void	free_images(t_game *game);
-void	open_map(t_game *game, const char *map_file);
-void	check_map_ret(char *line, int current_wid, int expected_wid, int fd);
+void	init_map(t_game *game, const char *map_file);
 void	validate_map_walls(t_game *game);
 void	free_map(t_map *map);
 void	validate_map(t_game *game);
 void	validate_path(t_game *game);
 int		validate_file_extension(char *filename);
 void	free_textures(t_game *game);
-void	count_map_lines(const char *map_file, int *line_count);
-void	verify_map_lines(int fd, int *line_count, int *expected_width);
-void	check_width_consistency(char *line, int current_width,
+void	open_map(const char *map_file, int *line_count);
+void	read_map_lines(int fd, int *line_count, int *expected_width);
+void	verify_map_linesth_consistency(char *line, int current_width,
 			int expected_width, int fd);
 void	resize_handler(int width, int height, void *param);
 
