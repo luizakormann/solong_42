@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lukorman <lukorman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luiza <luiza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:34:36 by luiza             #+#    #+#             */
-/*   Updated: 2025/05/04 17:06:37 by lukorman         ###   ########.fr       */
+/*   Updated: 2025/05/14 21:07:05 by luiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		init_map(t_game *game, const char *map_file);
 void		read_map_content(t_game *game, const char *map_file);
-static void	read_map_lines(t_game *game, int fd);
+static void	read_map_lines_fd(t_game *game, int fd);
 static void	process_map_line(t_game *game, char *line, int i);
 
 void	init_map(t_game *game, const char *map_file)
@@ -43,11 +43,11 @@ void	read_map_content(t_game *game, const char *map_file)
 		ft_printf("Error reopening map file\n");
 		exit(EXIT_FAILURE);
 	}
-	read_map_lines(game, fd);
+	read_map_lines_fd(game, fd);
 	close(fd);
 }
 
-static void	read_map_lines(t_game *game, int fd)
+static void	read_map_lines_fd(t_game *game, int fd)
 {
 	int		i;
 	char	*line;
